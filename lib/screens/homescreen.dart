@@ -5,6 +5,16 @@ class Homescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Image.asset(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              "assets/boyIcon.png"),
+        ],
+      ),
+    );
   }
 }
