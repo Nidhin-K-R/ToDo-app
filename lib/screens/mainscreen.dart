@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/screens/homescreen.dart';
+import 'package:to_do_app/screens/todo_interface.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,7 +18,10 @@ class _MainScreenState extends State<MainScreen> {
           visible: checkBoxValue,
           child: FloatingActionButton(
             backgroundColor: Colors.lightBlueAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (ctx) => TodoInterface()));
+            },
             child: Icon(Icons.arrow_forward),
           )),
       backgroundColor: Colors.white,
