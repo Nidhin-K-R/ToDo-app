@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/practice/providerdemo.dart';
 import 'package:to_do_app/screens/homescreen.dart';
 import 'package:to_do_app/screens/todo_interface.dart';
 
@@ -24,10 +26,16 @@ class _MainScreenState extends State<MainScreen> {
             },
             child: Icon(Icons.arrow_forward),
           )),
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: true,
+        leading: Consumer<ProviderDemo>(
+            builder: (context, value, child) => IconButton(
+                onPressed: () {
+                  value.changing();
+                },
+                icon: value.mode
+                    ? Icon(Icons.dark_mode)
+                    : Icon(Icons.light_mode))),
       ),
       body: Column(
         children: [
