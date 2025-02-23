@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/practice/providerdemo.dart';
 import 'package:to_do_app/screens/mainscreen.dart';
 
 class Homescreen extends StatefulWidget {
@@ -8,10 +10,13 @@ class Homescreen extends StatefulWidget {
   State<Homescreen> createState() => _HomescreenState();
 }
 
+String? userName;
+
 class _HomescreenState extends State<Homescreen> {
   TextEditingController _controller = TextEditingController();
 
   bool _validate = false;
+  bool flag = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class _HomescreenState extends State<Homescreen> {
         backgroundColor: Colors.lightBlueAccent,
         onPressed: () {
           setState(() {
+            userName = _controller.text;
             _validate = false;
             if (_controller.text.isNotEmpty) {
               Navigator.push(
@@ -31,7 +37,17 @@ class _HomescreenState extends State<Homescreen> {
         },
         child: Icon(Icons.arrow_forward),
       ),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: Consumer<ProviderDemo>(
+            builder: (context, value, child) => IconButton(
+                onPressed: () {
+                  value.changing();
+                },
+                icon: value.mode
+                    ? Icon(Icons.dark_mode)
+                    : Icon(Icons.light_mode))),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 100),
         child: Column(
